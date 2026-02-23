@@ -53,6 +53,29 @@
                     sound.volume = 0.5; // keep it subtle
                     sound.play().catch(e => console.log('Audio play failed:', e));
                 });
+
+                // Floating time bubble logic for Visual Cues card
+                const visualCueCard = document.getElementById('visual-cue-card');
+                const timeBubble = document.createElement('div');
+                timeBubble.className = 'cursor-time-bubble';
+                document.body.appendChild(timeBubble);
+
+                visualCueCard.addEventListener('mouseenter', () => {
+                    const now = new Date();
+                    timeBubble.innerText = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+                    timeBubble.style.opacity = '1';
+                    timeBubble.style.transform = 'scale(1)';
+                });
+
+                visualCueCard.addEventListener('mousemove', (e) => {
+                    timeBubble.style.left = (e.clientX - 70) + 'px'; // 140px width centered
+                    timeBubble.style.top = (e.clientY + 20) + 'px'; // 20px below cursor
+                });
+
+                visualCueCard.addEventListener('mouseleave', () => {
+                    timeBubble.style.opacity = '0';
+                    timeBubble.style.transform = 'scale(0.8)';
+                });
             </script>
             <div class="version">Version 1.0.0 • Free & Open Source</div>
         </header>
@@ -64,7 +87,7 @@
                 <p>Crisp, highly premium "Glass" chime exactly at the top of every hour to keep you grounded.</p>
             </div>
 
-            <div class="feature-card">
+            <div class="feature-card" id="visual-cue-card">
                 <div class="feature-icon">👁️</div>
                 <h3>Visual Cues</h3>
                 <p>A non-intrusive, floating time bubble animates seamlessly beneath your cursor and fades away.</p>
