@@ -237,3 +237,36 @@ body {
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     will-change: transform, left, top;
 }
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-15deg);
+    }
+
+    40% {
+        transform: rotate(10deg);
+    }
+
+    60% {
+        transform: rotate(-10deg);
+    }
+
+    80% {
+        transform: rotate(5deg);
+    }
+}
+
+.bell-emoji {
+    display: inline-block;
+    transform-origin: top center;
+}
+
+.wiggle {
+    animation: wiggle 0.5s ease-in-out;
+}
